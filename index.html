@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07131f" />
+    <title>stickman的信息学体验馆</title>
+    <meta name="description" content="从熟悉的 AI 聊起，认识信息学与信息学奥林匹克竞赛，亲手体验牛顿迭代与克鲁斯卡尔算法。" />
+    <link rel="icon" type="image/svg+xml" href="assets/stickman-logo.svg" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="narrative.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar" id="mainline-top">
+        <div class="brand-block">
+          <img class="brand-mark" src="assets/stickman-logo.svg" width="52" height="52" alt="火柴人标志" />
+          <div>
+            <p class="eyebrow">STICKMAN / INFORMATICS</p>
+            <h1>stickman的信息学体验馆</h1>
+          </div>
+        </div>
+        <div class="topbar-tools"><div class="offline-badge">AI 时代的少年探索课</div><button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false">动态效果：开</button></div>
+      </header>
+
+      <main class="mainline" aria-label="stickman的信息学体验馆主线">
+        <section class="mainline-hero reveal" id="mainline-hero">
+          <canvas class="hero-network" id="hero-network" aria-hidden="true"></canvas>
+          <div class="hero-orbit hero-orbit-one" aria-hidden="true"></div>
+          <div class="hero-grid-glow" aria-hidden="true"></div>
+          <div class="hero-copy">
+            <p class="hero-kicker">从你熟悉的 AI 聊起</p>
+            <div class="ai-names" aria-label="熟悉的 AI 工具"><span>ChatGPT <small>OpenAI</small></span><span>DeepSeek</span><span>豆包</span></div>
+            <div class="hero-signal" aria-label="用程序解决问题的过程">
+              <span>一个问题</span><i aria-hidden="true"></i><span>一套方法</span><i aria-hidden="true"></i><span>程序求解</span>
+            </div>
+            <h2>你用过 AI 吗？<br /><span>我们从一道题聊起。</span></h2>
+            <p class="hero-lead">解释一道题、整理一份数据、写一段程序，再给出一个方案。<br />先看看 AI 能帮我们做什么，再亲手试试计算机是怎么解题的。</p>
+            <div class="hero-actions">
+              <button class="hero-button primary" id="ai-next" type="button">看看下一项 <span>→</span></button>
+              <a class="hero-button ghost" href="#algorithm-lab">直接进入实验 <span>↗</span></a>
+            </div>
+            <div class="hero-proof" aria-label="学习路径">
+              <div><strong>01</strong><span>感受 AI</span></div>
+              <i></i>
+              <div><strong>02</strong><span>发现方法</span></div>
+              <i></i>
+              <div><strong>03</strong><span>亲手挑战</span></div>
+            </div>
+          </div>
+          <div class="hero-console mission-console" aria-label="AI 课堂示例">
+            <div class="console-top"><b>校园助手 / 四个例子</b><em>预设示例 · 非实时回答</em></div>
+            <div class="mission-tabs" role="tablist" aria-label="任务等级">
+              <button id="ai-tab-0" role="tab" aria-selected="true" aria-controls="ai-task-panel" class="is-active" data-ai-step="0">01 解释</button>
+              <button id="ai-tab-1" role="tab" aria-selected="false" aria-controls="ai-task-panel" data-ai-step="1" tabindex="-1">02 任务</button>
+              <button id="ai-tab-2" role="tab" aria-selected="false" aria-controls="ai-task-panel" data-ai-step="2" tabindex="-1">03 程序</button>
+              <button id="ai-tab-3" role="tab" aria-selected="false" aria-controls="ai-task-panel" data-ai-step="3" tabindex="-1">04 方案</button>
+            </div>
+            <div id="ai-task-panel" class="mission-body" role="tabpanel" aria-labelledby="ai-tab-0">
+              <p class="mission-level" id="ai-level">第 1 项 / 解释一道题</p>
+              <h3 id="ai-prompt">面积是 13 的正方形，边长怎么求？</h3>
+              <div class="mission-result" id="ai-result"><div class="sqrt-preview"><span>√13</span><strong>3.60555…</strong><p>3² &lt; 13 &lt; 4²<br />它怎样继续算出小数位？</p></div></div>
+              <p class="mission-question" id="ai-question">边长在 3 和 4 之间。更准确的值怎么算？待会儿一起试试。</p>
+            </div>
+            <div class="mission-footer"><span id="ai-progress">示例 1 / 4</span><a href="#what-is-informatics">什么是信息学？ ↓</a></div>
+          </div>
+        </section>
+
+        <nav class="story-nav" aria-label="主线导航">
+          <a href="#mainline-hero">AI 开场</a>
+          <a href="#what-is-informatics">计算的基础</a>
+          <a href="#what-is-contest">认识信奥</a>
+          <a href="#growth-path">成长路线</a>
+          <a href="#real-achievements">成果与机会</a>
+          <a href="#learning-map">学什么</a>
+          <a href="#algorithm-lab">算法实验</a>
+          <a href="#video">压轴视频</a>
+        </nav>
+
+        <section class="story-section intro-section reveal" id="what-is-informatics">
+          <div class="section-intro">
+            <p class="hero-kicker">01 / 信息学与 AI</p>
+            <h2>什么是信息学？</h2>
+            <p>现代 AI 离不开计算机科学、数学与机器学习。信息学研究怎样表示和处理信息，用计算解决问题。今天，我们从两个能动手尝试的算法开始认识它。</p>
+          </div>
+          <div class="computation-flow" aria-label="现实问题转化为计算问题">
+            <div><span>现实任务</span><strong>连接校园建筑</strong></div><i aria-hidden="true">→</i>
+            <div><span>表示信息</span><strong>节点、边、长度</strong></div><i aria-hidden="true">→</i>
+            <div><span>设计方法</span><strong>排序与判断</strong></div><i aria-hidden="true">→</i>
+            <div><span>执行与检查</span><strong>程序给出结果</strong></div>
+          </div>
+          <div class="concept-grid">
+            <article class="concept-card"><span class="concept-index">A</span><h3>数据</h3><p>把现实世界里的数字、文字、地图和关系，变成程序能够处理的形式。</p><div class="concept-line"></div></article>
+            <article class="concept-card"><span class="concept-index">B</span><h3>算法</h3><p>设计清楚的执行步骤。方法选得好，复杂任务也可能很快完成。</p><div class="concept-line"></div></article>
+            <article class="concept-card"><span class="concept-index">C</span><h3>程序</h3><p>把方法写成代码，交给计算机运行，再检查它是否满足要求。</p><div class="concept-line"></div></article>
+          </div>
+          <p class="story-bridge">你也想设计一个方法，让计算机按照你的思路解决问题吗？</p>
+          <details class="teacher-note"><summary>教师讲解：信息学与 AI 的联系</summary><p>大模型利用训练得到的模型生成回答，并非每句话都由人手写规则推演。信奥训练基础算法、程序实现和计算思维，与 AI 的计算基础相联系。今天的牛顿迭代与最小生成树是经典算法体验，不是大模型内部机制的复刻。</p></details>
+        </section>
+
+        <section class="story-section contest-section reveal" id="what-is-contest">
+          <div class="section-intro split-intro">
+            <div><p class="hero-kicker">02 / 认识信息学竞赛</p><h2>什么是信息学奥林匹克竞赛？</h2></div>
+            <p>信息学奥林匹克竞赛，是青少年展示算法设计与程序实现能力的舞台。IOI 是五大国际科学奥林匹克竞赛之一。</p>
+          </div>
+          <div class="olympiad-line" aria-label="五大学科奥林匹克竞赛">
+            <article><span>IMO</span><h3>数学</h3><p>推理与证明</p></article>
+            <article><span>IPhO</span><h3>物理</h3><p>规律与实验</p></article>
+            <article><span>IChO</span><h3>化学</h3><p>物质与变化</p></article>
+            <article><span>IBO</span><h3>生物</h3><p>生命与机制</p></article>
+            <article class="featured"><span>IOI</span><h3>信息学</h3><p>算法与程序</p></article>
+          </div>
+          <div class="contest-names"><p><b>NOI</b> 全国青少年信息学奥林匹克竞赛</p><p><b>IOI</b> 国际信息学奥林匹克竞赛</p><span>国内舞台与国际舞台，由不同层次的选拔相衔接。</span></div>
+          <h3 class="subsection-title">坐到比赛电脑前，你会经历什么？</h3>
+          <div class="process-track">
+            <article><span>01</span><h3>读懂题目</h3><p>找出输入、输出和限制条件。</p></article>
+            <div class="process-arrow">→</div>
+            <article><span>02</span><h3>抽象建模</h3><p>把现实情境变成数组、图或公式。</p></article>
+            <div class="process-arrow">→</div>
+            <article><span>03</span><h3>设计算法</h3><p>选择更快、更稳、更容易验证的方法。</p></article>
+            <div class="process-arrow">→</div>
+            <article><span>04</span><h3>编程调试</h3><p>让程序跑起来，再用样例和边界检查它。</p></article>
+          </div>
+          <div class="judge-demo"><div><span class="hero-kicker">ONLINE JUDGE / 课堂示意</span><h3>算得对，还要跑得动。</h3><p>评测检查测试数据的结果，也检查时间和内存限制。</p></div><div class="judge-result" id="judge-result" role="status">等待提交方案</div><button type="button" id="judge-next" class="hero-button ghost">试试不同的方案</button></div>
+          <p class="source-line">竞赛身份依据 <a href="https://ioinformatics.org/" target="_blank" rel="noopener">IOI 官网</a>与 <a href="https://www.noi.cn/gynoi/jj/" target="_blank" rel="noopener">NOI 系列活动简介</a>。</p>
+        </section>
+
+        <section class="story-section support-section reveal" id="national-support">
+          <div class="section-intro"><p class="hero-kicker">03 / 发展与重视</p><h2>为什么重视青少年的信息学学习？</h2><p>从普及计算机，到培养科学素养和创新能力，信息学教育的发展有一段值得了解的历史。</p></div>
+          <div class="support-history">
+            <article><span class="history-year">1984</span><div><h3>“计算机的普及要从娃娃抓起”</h3><p>邓小平提出这句话。同年，中国计算机学会创办全国青少年程序设计竞赛，后来发展为 NOI。</p></div></article>
+            <article><span class="history-year">2024<br /><small>—2035</small></span><div><h3>科学教育与创新能力培养</h3><p>《教育强国建设规划纲要》部署科学素养培育“沃土计划”，并提出促进人工智能助力教育变革。</p></div></article>
+            <article><span class="history-year">CCF</span><div><h3>有组织、有规则的成长舞台</h3><p>中国计算机学会主办 NOI 系列活动。学习、能力检验与选拔，让学生能够逐步挑战更高目标。</p></div></article>
+          </div>
+          <p class="source-line"><a href="https://www.noi.cn/gynoi/jj/" target="_blank" rel="noopener">NOI 创办历史</a> · <a href="https://www.moe.gov.cn/jyb_xxgk/moe_1777/moe_1778/202501/t20250119_1176193.html?zbb=true" target="_blank" rel="noopener">教育强国建设规划纲要</a></p>
+          <p class="story-bridge">这样的支持，如何落到今天的你？第一步，从学会表达自己的思路开始。</p>
+        </section>
+
+        <section class="story-section growth-section reveal" id="growth-path">
+          <div class="section-intro"><p class="hero-kicker">04 / 竞赛与学习路线</p><h2>从编程入门，到国际赛场。</h2><p>CSP-J/S 是信奥学习中常见的阶段性能力检验。从基础编程出发，再逐步了解联赛、全国赛和国际赛的选拔过程。</p></div>
+          <div class="growth-layout">
+            <div class="growth-track" role="tablist" aria-label="信奥成长阶段">
+              <button id="growth-tab-0" role="tab" aria-selected="true" aria-controls="growth-detail" data-growth-step="0" class="is-active"><span>01</span><strong>编程入门</strong><small>表达思路</small></button>
+              <button id="growth-tab-1" role="tab" aria-selected="false" aria-controls="growth-detail" data-growth-step="1" tabindex="-1"><span>02</span><strong>CSP-J</strong><small>入门检验</small></button>
+              <button id="growth-tab-2" role="tab" aria-selected="false" aria-controls="growth-detail" data-growth-step="2" tabindex="-1"><span>03</span><strong>CSP-S</strong><small>算法进阶</small></button>
+              <button id="growth-tab-3" role="tab" aria-selected="false" aria-controls="growth-detail" data-growth-step="3" tabindex="-1"><span>04</span><strong>NOIP</strong><small>联赛挑战</small></button>
+              <button id="growth-tab-4" role="tab" aria-selected="false" aria-controls="growth-detail" data-growth-step="4" tabindex="-1"><span>05</span><strong>省队 / NOI</strong><small>全国舞台</small></button>
+              <button id="growth-tab-5" role="tab" aria-selected="false" aria-controls="growth-detail" data-growth-step="5" tabindex="-1"><span>06</span><strong>集训 / IOI</strong><small>国际舞台</small></button>
+            </div>
+            <div class="growth-detail" id="growth-detail" role="tabpanel" aria-labelledby="growth-tab-0"><span class="mission-level" id="growth-level">第 1 站</span><h3 id="growth-title">先写出一个能运行的程序。</h3><p id="growth-text">从输入输出、条件和循环开始。把自己的解题方法写成代码，让它正确运行，就是学习编程的第一步。</p><button class="hero-button ghost" id="growth-next" type="button">看看下一阶段 →</button></div>
+          </div>
+          <p class="route-disclaimer">常见学习与参与方向，不代表自动晋级。实际资格依当年、当地通知。</p>
+          <details class="teacher-note"><summary>查看 CSP 与后续信奥活动的实际衔接和参与条件</summary><p>CSP-J/S、NOIP 与 NOI 均由 CCF 组织，学习内容围绕算法与程序设计。NOIP 2025 部分推荐名额要求参加过当年 CSP-S 第二轮，部分省份也参考相关成绩选拔，体现实际衔接。CSP 正式性质为能力认证，NOIP、NOI 为竞赛。2026 年 CSP 报名须在 9 月 1 日前满 12 周岁，认证结果名称规范为一级、二级、三级能力等级。正式参赛与体验资格需分别核对。</p><div class="note-links"><a href="https://www.noi.cn/xw/2025-10-10/849337.shtml" target="_blank" rel="noopener">NOIP 名额方案（2025）</a><a href="https://www.noi.cn/xw/2026-07-06/908222.shtml" target="_blank" rel="noopener">CSP-J/S 说明（2026）</a><a href="https://www.noi.cn/xw/2026-09-09/930554.shtml" target="_blank" rel="noopener">等级名称规范</a></div></details>
+          <p class="story-bridge">远处的舞台真的有中学生站上去吗？看看今年的真实成绩。</p>
+        </section>
+
+        <section class="story-section achievements-section reveal" id="real-achievements">
+          <div class="achievement-header"><div class="section-intro"><p class="hero-kicker">05 / 中国队的成绩</p><h2>2026 年，他们站上了 IOI 赛场。</h2><p>IOI 2026 中国队获得 3 金 1 银。来认识一下这些经过长期训练、代表中国参加国际赛的选手。</p></div><div class="medal-total" aria-label="中国队三枚金牌一枚银牌"><strong>3<span>金</span></strong><i>+</i><strong>1<span>银</span></strong></div></div>
+          <div class="athlete-grid">
+            <article><span class="medal-label gold">金牌 / 第 1 名</span><h3>许淇文</h3><p>南京外国语学校</p></article>
+            <article><span class="medal-label gold">金牌 / 第 3 名</span><h3>赵晟昊</h3><p>浙江金华第一中学</p></article>
+            <article><span class="medal-label gold">金牌 / 第 13 名</span><h3>刘家炜</h3><p>重庆市巴蜀中学校</p></article>
+            <article><span class="medal-label silver">银牌</span><h3>何宇翔</h3><p>重庆南开（融侨）中学校</p></article>
+          </div>
+          <p class="source-line">成绩来源：<a href="https://www.noi.cn/xw/2026-08-16/924196.shtml" target="_blank" rel="noopener">NOI 官网 IOI 2026 中国队报道</a>。</p>
+          <div class="peer-results"><div><p class="hero-kicker">身边的学习案例</p><h3>同龄人是怎样开始的？</h3><p>课件里也记录了从基础训练开始、取得阶段性成绩的学生。</p></div><div><span>2025 年 PPT 案例 / 八年级</span><strong>王某轩 <b>400 分</b></strong></div><div><span>2025 年 PPT 案例 / 七年级</span><strong>彭某范 <b>364 分</b></strong></div></div>
+          <p class="route-disclaimer">同龄案例为课件展示的历史认证成绩，保留匿名和年份。国际成绩来自长期学习，不代表短期训练效果。</p>
+          <p class="story-bridge">成绩展示能力，也可能打开真实的高校选拔机会。公开的政策，我们直接讲清楚。</p>
+        </section>
+
+        <section class="story-section opportunities-section reveal" id="admission-opportunities">
+          <div class="section-intro"><p class="hero-kicker">06 / 成绩与升学机会</p><h2>竞赛成绩能带来哪些升学机会？</h2><p>学习价值与升学机会可以同时了解。保送、强基破格、综合评价，对应不同条件和选拔机制。</p></div>
+          <div class="opportunity-grid">
+            <article><span class="opportunity-index">01 / 保送</span><h3>清华、北大<br />学科竞赛保送</h3><p class="opportunity-condition">关键条件：入选国家集训队</p><p>符合保送资格与毕业要求的优秀选手，可按高校简章申请，经审核、笔试和面试等考核选拔。</p><p class="opportunity-boundary">不是任意 NOI 金牌都自动保送。</p><div class="note-links"><a href="https://join-tsinghua.edu.cn/info/1006/2131.htm" target="_blank" rel="noopener">清华 2026 简章 ↗</a><a href="https://bkzs.pku.edu.cn/tzgg/7cb048dd07d6453b903a3739b28eee14.htm" target="_blank" rel="noopener">北大 2026 简章 ↗</a></div></article>
+            <article><span class="opportunity-index">02 / 强基</span><h3>全国决赛成绩<br />破格入围机会</h3><p class="opportunity-condition">清北 2026：全国决赛二等奖及以上</p><p>符合条件的国金、国银选手可申请破格，审核通过后获得破格入围资格，仍须达到规定高考线并参加校测。</p><p class="opportunity-boundary">破格入围不等于固定降分或保证录取；上述条件不含国铜。</p><div class="note-links"><a href="https://www.join-tsinghua.edu.cn/info/1033/2166.htm" target="_blank" rel="noopener">清华 2026 简章 ↗</a><a href="https://bkzs.pku.edu.cn/tzgg/4dc8487f304e476786627574e8744c27.htm" target="_blank" rel="noopener">北大 2026 简章 ↗</a></div></article>
+            <article><span class="opportunity-index">03 / 综评</span><h3>学科特长<br />成为申报材料</h3><p class="opportunity-condition">具体奖项依学校、年度和地区</p><p>例如东南大学 2026 年江苏综评指南，允许填写高中阶段五项学科奥赛省级赛区决赛一等奖并上传证书。</p><p class="opportunity-boundary">可提交特长材料，不代表统一加分或直接录取。</p><div class="note-links"><a href="https://zsb.seu.edu.cn/2026/0428/c23617a566011/page.htm" target="_blank" rel="noopener">东南大学 2026 文件 ↗</a></div></article>
+          </div>
+          <details class="teacher-note"><summary>家长说明：奖项层次和招生政策如何核对</summary><p>这里的国金、国银、国铜指 NOI 全国赛成绩，与 IOI 奖牌、NOIP 奖项及 CSP 能力等级区分。国铜是重要的全国赛成果，但不能据清北上述简章宣称同样享有强基破格资格。NOIP 省级成绩、CSP 等级与省队身份在不同高校申报中的适用性须分别核对。保送、强基和综评与给高考总分直接加分不是同一种机制。网页展示 2026 年公开实例，不能承诺学生毕业时政策不变。</p><div class="note-links"><a href="https://www.moe.gov.cn/jyb_xwfb/s271/202511/t20251103_1418853.html" target="_blank" rel="noopener">教育部特殊类型招生说明</a></div></details>
+          <p class="story-bridge">看见远处的目标之后，回到脚下：这些能力，究竟从哪里学起？</p>
+        </section>
+
+        <section class="story-section learning-section reveal" id="learning-map">
+          <div class="section-intro">
+            <p class="hero-kicker">07 / 学习内容</p>
+            <h2>大概在学什么？学完能做到什么？</h2>
+            <p>学习会从“让程序听懂我”开始，逐渐走到“让程序替我寻找答案”。每一层都对应一种新的思考工具。</p>
+          </div>
+          <div class="learning-layout">
+            <div class="learning-rail" aria-hidden="true"><span class="rail-node is-done">01</span><i></i><span class="rail-node is-done">02</span><i></i><span class="rail-node is-active">03</span><i></i><span class="rail-node">04</span></div>
+            <div class="learning-cards">
+              <article><span class="level-tag">入门</span><h3>用 C++ 表达想法</h3><p>变量、输入输出、条件、循环、函数：把一步一步的思路写成程序。</p></article>
+              <article><span class="level-tag">基础</span><h3>处理更大的信息</h3><p>数组、字符串、排序、模拟、复杂度：让程序不仅能做，还能做得快。</p></article>
+              <article class="highlight-card"><span class="level-tag">提高</span><h3>从结构中寻找答案</h3><p>图、搜索、贪心、动态规划：像侦探一样拆解关系，找到隐藏的最优方案。</p></article>
+              <article><span class="level-tag">能力收获</span><h3>六种可以迁移的思维</h3><p class="skill-list"><b>逻辑</b><b>抽象</b><b>建模</b><b>调试</b><b>优化</b><b>创造</b></p></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="story-section lab-intro-section reveal" id="algorithm-lab">
+          <div class="section-intro split-intro">
+            <div><p class="hero-kicker">08 / 动手试一试</p><h2>先自己想一想，再看程序怎么做。</h2></div>
+            <p>√13 的小数位怎样算出来？校园的网线怎样铺最省？先用两三分钟推理，再看程序如何把每一步做得又快又清楚。</p>
+          </div>
+          <div class="lab-launch-grid">
+            <a class="lab-launch-card" href="#demo-newton" data-jump-demo="newton"><span class="lab-number">01</span><div><h3>矩形变正方形</h3><p>牛顿迭代法 · 数值逼近</p></div><strong>进入实验 ↗</strong></a>
+            <a class="lab-launch-card" href="#demo-dfs" data-jump-demo="dfs"><span class="lab-number">02</span><div><h3>校园网络布线</h3><p>克鲁斯卡尔算法 · 最小生成树</p></div><strong>进入实验 ↗</strong></a>
+          </div>
+        </section>
+      </main>
+
+      <nav class="demo-tabs" aria-label="演示选择">
+        <button class="demo-tab is-active" data-demo="newton">
+          <span class="tab-index">01</span>
+          <span><strong>矩形变正方形</strong></span>
+        </button>
+        <button class="demo-tab" data-demo="dfs">
+          <span class="tab-index">02</span>
+          <span><strong>校园网络布线</strong></span>
+        </button>
+      </nav>
+
+      <main id="demo-newton" class="demo-view is-active">
+        <section class="control-strip" aria-label="牛顿迭代案例">
+          <div class="strip-heading">
+            <span class="section-label">案例选择</span>
+            <span class="strip-note">同一个规则，解决五种面积</span>
+          </div>
+          <div id="newton-presets" class="preset-list"></div>
+        </section>
+
+        <div class="workspace-grid code-collapsed" id="newton-workspace">
+          <section class="stage-panel">
+            <div class="panel-heading">
+              <div>
+                <span class="section-label">几何实验台</span>
+                <h2>一个面积为 <span id="newton-area-heading">4</span> 的正方形，边长是多少？</h2>
+              </div>
+              <div class="heading-actions">
+                <button class="code-open" data-code-open="newton" aria-controls="newton-code-panel" aria-expanded="false"><span class="code-icon" aria-hidden="true">&lt;/&gt;</span>查看代码</button>
+                <button class="info-toggle" data-info-toggle="newton" aria-controls="newton-algorithm-info" aria-expanded="false">算法说明</button>
+                <span class="step-chip" id="newton-step-chip" aria-live="polite">准备开始</span>
+              </div>
+            </div>
+            <section class="algorithm-info is-hidden" id="newton-algorithm-info" aria-label="牛顿迭代法算法说明">
+              <div class="algorithm-info-heading">
+                <div><span class="section-label">算法说明</span><h3>牛顿迭代法 Newton's Method</h3></div>
+                <span class="algorithm-badge">数值逼近</span>
+              </div>
+              <div class="algorithm-info-grid">
+                <article><h4>基本思想</h4><p>先给出一个猜测，再根据当前结果修正猜测。求平方根时，把面积为 N 的矩形两条边取平均，让它逐渐接近正方形。</p></article>
+                <article><h4>基本执行逻辑</h4><p>① 猜测 x；② 计算另一条边 N / x；③ 更新 x = (x + N / x) / 2；④ 重复，直到两条边足够接近。</p></article>
+                <article><h4>应用方向</h4><p>求平方根、解方程、工程计算、物理模拟和其他需要快速得到近似数值的问题。</p></article>
+              </div>
+            </section>
+            <div class="newton-stage" id="newton-stage">
+              <svg class="newton-svg" viewBox="0 0 760 400" role="img" aria-label="矩形逐渐变成正方形的动画">
+                <defs>
+                  <pattern id="grid-pattern" width="28" height="28" patternUnits="userSpaceOnUse">
+                    <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#d9ded9" stroke-width="1" />
+                  </pattern>
+                  <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#1d2d35" flood-opacity="0.12" />
+                  </filter>
+                </defs>
+                <rect x="0" y="0" width="760" height="400" rx="12" fill="url(#grid-pattern)" opacity="0.55" />
+                <text x="78" y="48" class="svg-kicker">目标形状</text>
+                <text x="78" y="75" class="svg-title">正方形</text>
+                <rect id="target-square" x="84" y="132" width="154" height="154" rx="5" fill="#dff1e8" stroke="#238b70" stroke-width="3" stroke-dasharray="7 7" />
+                <text id="target-area-label" x="161" y="218" text-anchor="middle" class="svg-area-label">面积 4</text>
+                <text id="target-side-label" x="161" y="310" text-anchor="middle" class="svg-muted">理想边长：2</text>
+
+                <path d="M 280 208 H 326" class="svg-arrow-line" />
+                <path d="M 318 200 L 328 208 L 318 216" class="svg-arrow-head" />
+
+                <text x="370" y="48" class="svg-kicker">当前猜测形成的矩形</text>
+                <text id="newton-round-label" x="370" y="75" class="svg-title">初始猜想 x₀ = 1</text>
+                <g id="current-rectangle" filter="url(#soft-shadow)">
+                  <rect id="rectangle-shape" x="410" y="174" width="300" height="68" rx="6" fill="#f4c95d" stroke="#bd8f1f" stroke-width="3" />
+                  <text id="rectangle-area-label" x="560" y="211" text-anchor="middle" class="svg-area-label">面积保持为 4</text>
+                </g>
+                <text id="rectangle-long-label" x="560" y="156" text-anchor="middle" class="svg-measure">x = 4</text>
+                <text id="rectangle-short-label" x="742" y="125" text-anchor="end" class="svg-measure">N / x = 4</text>
+                <text x="370" y="348" class="svg-footnote">面积保持不变，两条边越来越接近。</text>
+              </svg>
+              <div class="step-explanation" id="newton-explanation" role="status" aria-live="polite">点击“下一步”，看看程序如何修正第一次猜测。</div>
+              <footer class="playback-bar" id="playback-bar">
+                <div class="playback-label"><span class="playback-pulse"></span><span id="playback-status" role="status" aria-live="polite">准备开始</span></div>
+                <div class="playback-controls">
+                  <button class="control-button secondary" id="previous-step" title="上一步">← 上一步</button>
+                  <button class="control-button primary" id="toggle-play" title="播放或暂停"><span id="play-icon">▶</span><span id="play-label">播放</span></button>
+                  <button class="control-button secondary" id="next-step" title="下一步">下一步 →</button>
+                  <button class="control-button ghost" id="reset-demo" title="重置当前演示">↺ 重置</button>
+                </div>
+                <div class="speed-control"><span>速度</span><input id="speed-range" type="range" min="100" max="1000" step="50" value="300" /><span id="speed-value">正常</span></div>
+              </footer>
+            </div>
+            <div class="metrics-row">
+              <div class="metric"><span>当前猜测 x</span><strong id="newton-x">4.000000</strong></div>
+              <div class="metric"><span>另一条边 N / x</span><strong id="newton-other">1.000000</strong></div>
+              <div class="metric"><span>两边差距</span><strong id="newton-gap">3.000000</strong></div>
+              <div class="metric metric-accent"><span>修正次数</span><strong id="newton-iteration">0</strong></div>
+            </div>
+          </section>
+
+          <aside class="code-panel is-hidden" id="newton-code-panel" aria-label="牛顿迭代代码">
+            <div class="panel-heading compact-heading">
+              <div>
+                <span class="section-label">C++ 程序</span>
+                <h2>程序正在执行</h2>
+              </div>
+              <div class="code-heading-actions">
+                <span class="language-tag">C++98</span>
+                <button class="code-close" data-code-close="newton" aria-label="收起牛顿迭代代码" title="收起代码">×</button>
+              </div>
+            </div>
+            <div class="code-tabs" role="tablist" aria-label="牛顿迭代代码版本">
+              <button class="code-tab is-active" data-code-tab-demo="newton" data-code-mode="core" role="tab" aria-selected="true">核心逻辑</button>
+              <button class="code-tab" data-code-tab-demo="newton" data-code-mode="full" role="tab" aria-selected="false">完整 C++</button>
+            </div>
+            <p class="code-note">代码可以编辑；当前编辑只改变展示，不会改变动画。</p>
+            <div class="code-actions">
+              <button class="code-action" data-code-toggle="newton">编辑代码</button>
+              <button class="code-action muted-action" data-code-reset="newton">恢复示例</button>
+            </div>
+            <div class="code-window" id="newton-code"></div>
+            <div class="state-card">
+              <div class="state-card-heading"><span>程序的想法</span><span class="state-symbol">?</span></div>
+              <p id="newton-thought">先给出一个猜测，再用矩形的另一条边来修正它。</p>
+            </div>
+            <div class="history-block">
+              <div class="history-heading"><span>猜测变化</span><span id="newton-result-label">等待开始</span></div>
+              <div class="history-track" id="newton-history"></div>
+            </div>
+          </aside>
+        </div>
+        <section class="experiment-recap" id="newton-recap"><div><p class="hero-kicker">回到主线 / 数值挑战回顾</p><h3>原来，小数位也能一步步逼近。</h3><p>每轮用 x 与 N / x 的平均值修正猜测。现在换一个问题：答案是一组边，怎样找出成本最低的连接方案？</p></div><a class="hero-button primary" href="#demo-dfs" data-jump-demo="dfs">继续校园布线挑战 →</a></section>
+      </main>
+
+      <main id="demo-dfs" class="demo-view">
+        <section class="control-strip" aria-label="校园网络布线挑战选择">
+          <div class="strip-heading">
+            <span class="section-label">布线挑战</span>
+            <span class="strip-note">先选一组网线，再让程序寻找总成本最低的连接方案</span>
+          </div>
+          <div id="maze-presets" class="preset-list">
+            <button class="preset-button maze-preset is-selected" data-maze="campus"><span class="preset-number">A</span><span><strong>校园基础网络</strong><small>6 栋建筑 · 10 条候选网线</small></span></button>
+          </div>
+        </section>
+
+        <div class="workspace-grid code-collapsed" id="dfs-workspace">
+          <section class="stage-panel maze-panel">
+            <div class="panel-heading">
+              <div>
+                <span class="section-label">网络设计实验台</span>
+                <h2 id="maze-title">校园基础网络：怎样用最少网线接入所有建筑？</h2>
+              </div>
+              <div class="heading-actions">
+                <button class="code-open" data-code-open="dfs" aria-controls="dfs-code-panel" aria-expanded="false"><span class="code-icon" aria-hidden="true">&lt;/&gt;</span>查看代码</button>
+                <button class="info-toggle" data-info-toggle="dfs" aria-controls="dfs-algorithm-info" aria-expanded="false">算法说明</button>
+                <span class="step-chip" id="dfs-step-chip" aria-live="polite">准备开始</span>
+              </div>
+            </div>
+            <section class="algorithm-info is-hidden" id="dfs-algorithm-info" aria-label="Kruskal 最小生成树算法说明">
+              <div class="algorithm-info-heading">
+                <div><span class="section-label">算法说明</span><h3>Kruskal 最小生成树算法</h3></div>
+                <span class="algorithm-badge">当前地图实际使用</span>
+              </div>
+              <div class="algorithm-info-grid">
+                <article><h4>基本思想</h4><p>把所有候选边按权值从小到大排列，优先尝试更短的边，同时保证网络不会出现环。</p></article>
+                <article><h4>基本执行逻辑</h4><p>① 取当前最短边；② 判断两端是否已经连通；③ 不连通就加入并合并两个网络；④ 会成环就跳过；直到所有节点连通。</p></article>
+                <article><h4>应用方向</h4><p>校园布线、道路铺设、光纤和管线规划、电网建设等，目标是在连接全部节点的同时让总成本最低。</p></article>
+              </div>
+              <p class="algorithm-note"><strong>和 Prim 的区别：</strong>Prim 从一个起点向外扩张，每次选择连接“已连通区域”的最短边；本动画使用 Kruskal，因为“按边权排序、遇到成环边就跳过”的过程更适合当前课堂演示。</p>
+            </section>
+            <div class="maze-stage delivery-stage">
+              <div class="delivery-board-wrap">
+                <svg id="delivery-board" class="delivery-map" viewBox="0 0 900 640" role="img" aria-label="校园候选网线图"></svg>
+              </div>
+              <div class="maze-legend delivery-legend">
+                <span><i class="legend-swatch start-swatch"></i>网络中心</span>
+                <span><i class="legend-swatch road-swatch"></i>候选网线</span>
+                <span><i class="legend-swatch candidate-swatch"></i>已加入网络</span>
+                <span><i class="legend-swatch explore-swatch"></i>正在检查</span>
+                <span><i class="legend-swatch rejected-swatch"></i>已跳过（会形成环）</span>
+                <span><i class="legend-swatch path-swatch"></i><span id="path-legend-label">最小生成树</span></span>
+              </div>
+              <div class="delivery-decision" aria-live="polite">
+                <div><span class="section-label">本轮程序选择</span><strong id="delivery-decision">先点击你想铺设的网线</strong></div>
+                <div><span class="section-label">为什么</span><p id="delivery-reason">目标是让所有建筑连通，同时让网线总长度最短。</p></div>
+              </div>
+              <div class="route-toolbar">
+                <div>
+                  <span class="section-label">先做一个预测</span>
+                  <strong id="route-phase-label">请点击 5 条你认为应该铺设的网线</strong>
+                </div>
+                <div class="route-actions">
+                  <button class="route-button is-active" id="show-dfs" type="button">我的选择</button>
+                  <button class="route-button" id="show-routes" type="button">程序开始布线</button>
+                  <button class="route-button" id="show-shortest" type="button">揭晓最小网络</button>
+                </div>
+              </div>
+              <div class="route-comparison is-hidden" id="route-comparison">
+                <div class="route-comparison-heading">
+                  <div>
+                    <span class="section-label">网线选择结果</span>
+                    <strong id="route-comparison-title">已选 0 / 5 条</strong>
+                  </div>
+                  <span class="route-result" id="route-result"></span>
+                </div>
+                <div class="delivery-guess-list" id="route-list"></div>
+              </div>
+            </div>
+            <div class="metrics-row maze-metrics">
+              <div class="metric"><span>当前检查</span><strong id="dfs-position">等待选边</strong></div>
+              <div class="metric"><span>已检查网线</span><strong id="dfs-visited">0</strong></div>
+              <div class="metric"><span>当前总长度</span><strong id="dfs-backtracks">0 米</strong></div>
+              <div class="metric metric-accent"><span>网络进度</span><strong id="dfs-status">0 / 5 条</strong></div>
+            </div>
+          </section>
+
+          <aside class="code-panel is-hidden" id="dfs-code-panel" aria-label="Kruskal 最小生成树代码">
+            <div class="panel-heading compact-heading">
+              <div>
+                <span class="section-label">C++ 程序</span>
+                <h2>程序正在执行</h2>
+              </div>
+              <div class="code-heading-actions">
+                <span class="language-tag" id="dfs-code-phase" data-code-phase="kruskal">Kruskal · C++98</span>
+                <button class="code-close" data-code-close="dfs" aria-label="收起 Kruskal 代码" title="收起代码">×</button>
+              </div>
+            </div>
+            <div class="code-tabs" role="tablist" aria-label="最小生成树代码版本">
+              <button class="code-tab is-active" data-code-tab-demo="dfs" data-code-mode="core" role="tab" aria-selected="true">核心逻辑</button>
+              <button class="code-tab" data-code-tab-demo="dfs" data-code-mode="full" role="tab" aria-selected="false">完整 C++</button>
+            </div>
+            <p class="code-note">代码可以编辑；当前编辑只改变展示，不会改变动画。</p>
+            <div class="code-actions">
+              <button class="code-action" data-code-toggle="dfs">编辑代码</button>
+              <button class="code-action muted-action" data-code-reset="dfs">恢复示例</button>
+            </div>
+            <div class="code-window" id="dfs-code"></div>
+            <div class="stack-card">
+              <div class="state-card-heading"><span id="dfs-stack-label">按长度排序的网线</span><span class="stack-count" id="dfs-stack-count">0 条</span></div>
+              <div class="stack-list" id="dfs-stack"></div>
+            </div>
+            <div class="state-card maze-thought-card">
+              <div class="state-card-heading"><span>程序的想法</span><span class="state-symbol">!</span></div>
+              <p id="dfs-thought">先点击几条你认为应该铺设的网线，再看看程序如何避免形成环。</p>
+            </div>
+          </aside>
+        </div>
+      </main>
+
+      <section class="story-section lab-recap reveal" id="lab-recap"><div class="section-intro"><p class="hero-kicker">09 / 实验回顾</p><h2>两个算法，有什么共同点？</h2><p>一个不断修正数值，一个按规则选择网线。它们都有明确的步骤，每一步都能说清楚为什么这样做。</p></div><div class="recap-line"><span>提出任务</span><span>表示信息</span><span>设计步骤</span><span>运行检查</span></div><p class="story-bridge">接下来学习信息学，就是学习更多解题方法，再把它们写成能运行的程序。</p><a class="hero-button primary" href="#video">最后，看课件视频 ↓</a></section>
+
+      <section class="video-section reveal" id="video" aria-label="课件视频">
+        <div class="video-copy">
+          <p class="hero-kicker">10 / 课件视频</p>
+          <h2>最后，一起看这段视频。</h2>
+          <p>看完课件视频，再想一个问题：<br /><strong>你身边有什么任务，值得被描述成一个可以计算的问题？</strong></p>
+          <a class="hero-button ghost" href="#mainline-top">↑ 回到主线开头</a>
+        </div>
+        <div class="video-frame">
+          <video id="course-video" controls playsinline preload="none" poster="assets/infosci-poster.jpg" aria-label="信息学课件最后的视频">
+            <source src="assets/infosci-course-pages.webm" type="video/webm" />
+            <source src="assets/infosci-course-browser.mp4" type="video/mp4" />
+            当前浏览器不支持视频播放。
+          </video>
+          <div class="video-caption"><button class="hero-button primary" id="video-play" type="button">▶ 播放课件视频</button><span id="video-status" role="status">课件视频 · 点击播放</span><button class="video-retry" id="video-retry" type="button" hidden>重新加载视频</button><a href="assets/infosci-course-pages.webm" target="_blank" rel="noopener">单独打开视频 ↗</a></div>
+        </div>
+      </section>
+      <footer class="site-footer"><span>stickman的信息学体验馆 / 少年探索课</span><span>竞赛与招生实例核对至 2026 年 9 月 · 具体规则以官方当年文件为准</span><a href="#mainline-top">回到开头 ↑</a></footer>
+    </div>
+    <a class="return-mainline" id="return-mainline" href="#mainline-top" aria-label="回到主线开头">↟ <span>回到主线开头</span></a>
+    <script src="app.js"></script>
+    <script src="story.js"></script>
+  </body>
+</html>

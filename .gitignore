@@ -1,0 +1,7 @@
+.tools/
+__pycache__/
+
+# GitHub's 100 MB per-file limit; the browser-ready WebM remains in the site.
+assets/infosci-course.mp4
+assets/infosci-course-browser.mp4
+assets/infosci-course-browser.webm
